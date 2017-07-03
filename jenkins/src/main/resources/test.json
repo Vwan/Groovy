@@ -1,0 +1,48 @@
+{
+    "vms": [
+        {
+            "name": "chs1",
+            "ip": "1.1.1.1",
+            "address": [
+                {
+                    "city": "shanghai",
+                    "country": "china",
+                    "zip": 123
+                },
+                {
+                    "city": "newyork",
+                    "country": "US",
+                    "zip": 1232
+                },
+                {
+                    "city": "paris",
+                    "country": "france",
+                    "zip": 33
+                }
+            ],
+            "status": "online"
+        },
+        {
+            "name": "chs1",
+            "ip": "1.1.1.1",
+            "address": [
+                {
+                    "city": "shanghai",
+                    "country": "china",
+                    "zip": 123
+                },
+                {
+                    "city": "newyork",
+                    "country": "US",
+                    "zip": 1232
+                },
+                {
+                    "city": "paris",
+                    "country": "france",
+                    "zip": 33
+                }
+            ],
+            "status": "online"
+        }
+    ]
+}

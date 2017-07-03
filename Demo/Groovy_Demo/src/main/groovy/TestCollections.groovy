@@ -1,0 +1,4 @@
+
+class TestCollections extends GroovyTestCase {
+
+}

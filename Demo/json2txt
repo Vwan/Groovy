@@ -1,0 +1,40 @@
+import java.util.Map;
+
+import groovy.json.*
+
+/*
+ * Convert a json file to a text file seprated by a customized separator.
+ * Globalization (Uft-8) also considered.
+ */
+class JsonHelper {
+        
+    public static getValues( Map map, String prefix='', String separator) {
+        map.collectEntries { key, value ->
+          if( value instanceof Map ) getValues( value, "$prefix$separator$key",separator )
+          else  ["$prefix$separator$key$separator":value+"\n"] as TreeMap
+        }
+      }
+    
+    public static json2txt(String sourcefile, String targetfile, String separator){
+        
+        File source = new File(sourcefile)//.newReader("UTF-8")
+        def json = new JsonSlurper()//.setType(JsonParserType.INDEX_OVERLAY)
+        def jsonMap = json.parse(source,"UTF-8") as TreeMap
+        def target = new File(targetfile)
+        def values = getValues(jsonMap,,separator)
+        values.each{key,value->
+        target.append(key+separator+value,"UTF-8")
+        
+        }
+    }
+        
+    static main(args){
+            def dir="D:\\APP\\Test"
+            def sourcefile=dir+"Data.json"
+            def targetfile=dir+"Data.txt"
+            def separator=","
+            println json2txt(sourcefile,targetfile,separator)
+        }
+    }
+
+

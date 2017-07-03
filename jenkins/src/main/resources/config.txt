@@ -1,0 +1,22 @@
+jenkins {
+            url = "http://jenkins.url/"
+            username = "jenkins"
+            apiKey = "asdfadsgdsfshgdsfg"
+
+            buildGroup {
+                name = "Maven Builds"
+                xml {
+                    feature = "release/xml/maven-test-config.xml"
+                    develop = "release/xml/maven-install-config.xml"
+                }
+                repos {
+                    project1 = "ssh://git.repo/project1.git"
+                    project2 = "ssh://git.repo/project2.git"
+                }
+            }
+
+
+
+        }
+
+    }
