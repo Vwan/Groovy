@@ -6,10 +6,10 @@ import groovy.json.JsonSlurper
 
 date ="2017-07-10"
 src = [
-      //  "42":"超越智商",
-      // "29":"这才是心理学"
+         "42":"超越智商",
+        "29":"这才是心理学",
         "234":"超越智商",
-       "214":"这才是心理学",
+        "214":"这才是心理学",
        // "258":"畅销的原理",
         //"259":"畅销的原理"
        // "274":"日常生活中的自我呈现"
@@ -51,50 +51,16 @@ println url
                     author = "\n---\n# 撰写: " + it.user.login + "\n"
                    // println author
                     body = it.body
-                    str = replaceChapterNo(author + body, ids)
-                    temp = makeMdFile(str, ids, value)
+                   // str = replaceChapterNo(author + body, ids)
+                   // temp = makeMdFile(str, ids, value)
+                    cfile = new File( path+date+"-"+key+"-"+value+".md")
+                    fileWriteOrAppend(cfile,author + body)
                 }
             }
         }
-        fileWriteOrAppend(new File(path+date+"-TBD-"+value+".md"),temp)
-    }
-
-
-def replaceChapterNo(str,ids){
-    ids.each{
-        if (str.contains("第"+it.key+"章")) {
-            str = str.replaceAll("第" + it.key + "章", "第" + it.value + "章")
-        }
-        if (str.contains("Chapter"+it.key)) {
-            str = str.replaceAll("Chapter" + it.key, "第" + it.value + "章")
-        }
-    }
-    return str
-}
-
-def makeMdFile(str,ids,bookname){
-    uncatogeried = ""
-    if (str.length()<30) return
-    ids.each{
-        if(str.contains("第"+it.value+"章") ){
-            key = (it.key.toInteger()<10)?"0"+it.key:it.key
-            cfile = new File( path+date+"-"+key+"-"+bookname+".md")
-            fileWriteOrAppend(cfile,str)
-        }
-        isCategoried=false
-        ids.each{
-            if (str.contains("第"+it.value+"章")){
-                isCategoried = true
-                return isCategoried
-            }
-        }
-      //  println isCategoried
-        if (!isCategoried) uncatogeried += str
 
     }
 
-    return uncatogeried
-}
 
 def fileWriteOrAppend(file,s){
 
